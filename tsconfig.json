@@ -3,7 +3,6 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": false,
     "alwaysStrict": true,
-    "baseUrl": ".",
     "checkJs": false,
     "declaration": true,
     "declarationDir": "lib",
@@ -23,16 +22,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "lib",
-    "paths": {
-      "src/*": ["src/*"]
-    },
     "removeComments": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "es6",
-    "typeRoots": ["node_modules/@types", "src/@types"]
+    "typeRoots": ["node_modules/@types"]
   },
   "include": ["node_modules/@types", "src/**/*"],
   "exclude": ["node_modules"]
