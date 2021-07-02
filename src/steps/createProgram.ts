@@ -24,7 +24,7 @@ $ tscpath -p tsconfig.json -s ./src -o ./dist
     )
     .requiredOption('-s, --src <path>', 'source root path')
     .requiredOption('-o, --out <path>', 'output root path')
-    .option('--ext <extensions>', 'extension types', 'js,ts,jsx,tsx')
+    .option('--ext <extensions>', 'extension types', 'js')
     .option('--verbose', 'output logs', false);
 
   return program;
