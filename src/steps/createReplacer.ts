@@ -1,10 +1,10 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { dirname, relative, resolve } from 'path';
-import { Alias, ConfigPaths, ProgramPaths, ReplaceRecord } from '../types';
+import { existsSync, readFileSync, writeFileSync } from "fs";
+import { dirname, relative, resolve } from "path";
+import { Alias, ConfigPaths, ProgramPaths, ReplaceRecord } from "../types";
 
 const REQUIRE_REGEX = /(?:import|require)\(['"]([^'"]*)['"]\)/g;
 const IMPORT_REGEX = /(?:import|from) ['"]([^'"]*)['"]/g;
-const EXTS = ['.js', '.jsx', '.ts', '.tsx', '.d.ts', '.json'];
+const EXTS = [".js", ".jsx", ".ts", ".tsx", ".d.ts", ".json"];
 
 export function createReplacer(
   programPaths: ProgramPaths,
@@ -40,8 +40,8 @@ export function createReplacer(
           ) {
             const rel = relative(dirname(srcFile), moduleSrc);
             record.relativePath = (
-              rel.startsWith('.') ? rel : `./${rel}`
-            ).replace(/\\/g, '/');
+              rel.startsWith(".") ? rel : `./${rel}`
+            ).replace(/\\/g, "/");
             return record.relativePath;
           }
         }
@@ -76,11 +76,11 @@ export function createReplacer(
 
   return function replacer(files: string[]) {
     for (const file of files) {
-      const text = readFileSync(file, 'utf-8');
+      const text = readFileSync(file, "utf-8");
       const newText = replaceAlias(text, file);
       if (text === newText) continue;
       changes.push(file);
-      writeFileSync(file, newText, { encoding: 'utf-8' });
+      writeFileSync(file, newText, { encoding: "utf-8" });
     }
     return { changes, replacements };
   };

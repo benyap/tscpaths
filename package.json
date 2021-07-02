@@ -21,7 +21,7 @@
     "build:esm": "tsc -p ./tsconfig.esm.json",
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "clear": "rm -rf ./lib ./cjs ./coverage",
-    "format": "prettier --write \"./*.{js,jsx,ts,tsx}\" \"./src/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"./src/**/*.ts\"",
     "start:dev": "ts-node src/main.ts",
     "start": "node cjs/main.js",
     "test": "jest",

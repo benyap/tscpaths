@@ -1,5 +1,5 @@
-import { resolve } from 'path';
-import { sync } from 'globby';
+import { resolve } from "path";
+import { sync } from "globby";
 
 /**
  * Get the files in the output directory that should be processed.

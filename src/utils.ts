@@ -1,4 +1,4 @@
-import { ModuleNotFoundError } from './errors';
+import { ModuleNotFoundError } from "./errors";
 
 /**
  * Load a `js` or `json` module from the given path.

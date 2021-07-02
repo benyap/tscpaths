@@ -1,18 +1,18 @@
-import { bold, dim, green, red } from 'ansi-colors';
+import { bold, dim, green, red } from "ansi-colors";
 
-export type LoggerLevel = 'verbose' | 'info' | 'error';
+export type LoggerLevel = "verbose" | "info" | "error";
 
 export class Logger {
   constructor(public readonly level: LoggerLevel) {}
 
   verbose(...args: any[]) {
-    if (this.level === 'verbose') {
+    if (this.level === "verbose") {
       console.log(...args);
     }
   }
 
   info(...args: any[]) {
-    if (['verbose', 'info'].includes(this.level)) {
+    if (["verbose", "info"].includes(this.level)) {
       console.log(...args);
     }
   }
@@ -25,13 +25,13 @@ export class Logger {
     this.verbose(bold(title));
     const keys = Object.keys(params);
     const isArray = Array.isArray(params);
-    if (keys.length === 0) this.verbose(dim('empty'));
+    if (keys.length === 0) this.verbose(dim("empty"));
     else {
       for (const key of keys) {
         let value = params[key as keyof typeof params] as any;
-        if (typeof value === 'string') value = green(value);
+        if (typeof value === "string") value = green(value);
         if (isArray) this.verbose(value);
-        else this.verbose(key, '->', value);
+        else this.verbose(key, "->", value);
       }
     }
     this.verbose();

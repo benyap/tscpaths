@@ -1,5 +1,5 @@
-import { resolve, dirname } from 'path';
-import { ProgramArgs, ProgramPaths } from '../types';
+import { resolve, dirname } from "path";
+import { ProgramArgs, ProgramPaths } from "../types";
 
 /**
  * Resolve paths provided to the program to absolute paths.

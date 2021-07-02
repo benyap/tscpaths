@@ -1,6 +1,6 @@
-import { resolve } from 'path';
-import { MissingTSConfigError } from '../errors';
-import { ConfigPaths, ProgramPaths, TSConfig } from '../types';
+import { resolve } from "path";
+import { MissingTSConfigError } from "../errors";
+import { ConfigPaths, ProgramPaths, TSConfig } from "../types";
 
 /**
  * Resolve the paths provided in the tsconfig file.
@@ -15,20 +15,20 @@ export function resolveConfigPaths(
 
   if (!baseUrl)
     throw new MissingTSConfigError(
-      'resolveConfigPaths',
-      'compilerOptions.baseUrl'
+      "resolveConfigPaths",
+      "compilerOptions.baseUrl"
     );
 
   if (!paths)
     throw new MissingTSConfigError(
-      'resolveConfigPaths',
-      'compilerOptions.paths'
+      "resolveConfigPaths",
+      "compilerOptions.paths"
     );
 
   if (!outDir)
     throw new MissingTSConfigError(
-      'resolveConfigPaths',
-      'compilerOptions.outDir'
+      "resolveConfigPaths",
+      "compilerOptions.outDir"
     );
 
   const basePath = resolve(configPath, baseUrl);
