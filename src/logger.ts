@@ -12,7 +12,7 @@ export class Logger {
   }
 
   info(...args: any[]) {
-    if (this.level in ['verbose', 'info']) {
+    if (['verbose', 'info'].includes(this.level)) {
       console.log(...args);
     }
   }

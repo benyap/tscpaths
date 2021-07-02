@@ -46,6 +46,7 @@ function main() {
     const { replacements, changes } = replacer(files);
     logger.fancyParams('replacements', replacements);
     logger.fancyParams('changes', changes);
+    logger.info(bold('tscpaths:'), 'changed', changes.length, 'file(s)');
   } catch (error) {
     if (error instanceof StepError) {
       let message = error.message;
