@@ -22,7 +22,8 @@
     "start": "node cjs/main.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "release": "standard-version --skip.changelog"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "@types/node": "^15.14.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
+    "standard-version": "^9.3.0",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"

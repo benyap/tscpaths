@@ -1,4 +1,5 @@
 import { Command } from 'commander';
+import { version } from '../version.json';
 
 /**
  * Create the CLI parser program.
@@ -7,7 +8,7 @@ export function createProgram() {
   const program = new Command();
 
   program
-    .version(process.env.npm_package_version!)
+    .version(version)
     .name('tscpaths')
     .addHelpText(
       'after',
