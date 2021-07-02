@@ -1,50 +1,58 @@
-# tscpaths
-Replace absolute paths to relative paths after typescript compilation (tsc) during compile-time.
+# @benyap/tscpaths
 
-[![npm version](https://badge.fury.io/js/tscpaths.svg)](https://badge.fury.io/js/tscpaths)
-[![Dependency Status](https://david-dm.org/joonhocho/tscpaths.svg)](https://david-dm.org/joonhocho/tscpaths)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+> This is a fork of joonhocho's
+> [tscpaths](https://github.com/joonhocho/tscpaths). Credit goes to
+> [joonhocho](https://github.com/joonhocho) for the original code.
+
+[![npm version](https://badge.fury.io/js/%40benyap%2Ftscpaths.svg)](https://badge.fury.io/js/%40benyap%2Ftscpaths)
+[![Dependency Status](https://david-dm.org/benyap/tscpaths.svg)](https://david-dm.org/benyap/tscpaths)
+[![License](https://img.shields.io/:license-mit-blue.svg)](LICENSE)
+
+If you use Typescript's
+[path mapping](https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping)
+feature (by setting `baseUrl` and `paths` in `tsconfig.json`), you may have
+found that transpiling with `tsc` doesn't convert your aliases to proper
+relative paths. This causes problems as the transpiled code can't actually run
+with those path aliases - you'll get a "module not found" error.
+
+Use this package after `tsc` transpilation to replace path aliases with relative
+paths so that you can develop using path aliases whilst still being able to ship
+working JavaScript code.
 
 ## Comparison to [tsconfig-paths](https://github.com/dividab/tsconfig-paths)
-\+ Compile time (no runtime dependencies)
 
-## Getting Started
-First, install tscpaths as devDependency using npm or yarn.
+- Use during compile time - no runtime dependencies!
 
-```sh
-npm install --save-dev tscpaths
-# or
-yarn add -D tscpaths
-```
+## Usage
 
-## Add it to your build scripts in package.json
-```json
-"scripts": {
-  "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./out",
-}
-```
+1. Install `@benyap/tscpaths` as a dev dependency using npm or yarn.
+
+   ```sh
+   npm install --save-dev @benyap/tscpaths
+   # or
+   yarn add -D @benyap/tscpaths
+   ```
+
+2. Add it as a part of your build script in `package.json` after the code has
+   been transpiled.
+
+   ```json
+   "scripts": {
+     "build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./out",
+   }
+   ```
 
 ### Options
-| flag         | description                                        |
-| ------------ | -------------------------------------------------- |
-| -p --project | project configuration file (tsconfig.json)         |
-| -s --src     | source code root directory                         |
-| -o --out     | output directory of transpiled code (tsc --outDir) |
 
-You need to provide -s (--src) and -o (--out), because it's hard to predict source and output paths based on tsconfig.json.
+| flag      | shorthand | required | default       | description                                             |
+| --------- | --------- | -------- | ------------- | ------------------------------------------------------- |
+| --src     | -s        | yes      |               | source directory (where the source code is)             |
+| --out     | -o        | yes      |               | output directory of transpiled code (tsc --outDir)      |
+| --project | -p        | no       | tsconfig.json | path to the project configuration file (tsconfig.json)  |
+| --ext     |           | no       | js            | comma separated list of extensions to match and replace |
+| --verbose |           | no       |               | show verbose output                                     |
 
-I've tried a little and failed. :(
+## Disclaimer
 
-`tsc` does some magic to determine source and output paths and I haven't dived too deep to mimic it.
-
-For now, it's simpler to provide the paths manually.
-
-If you know how, Pull Requests are welcome!
-
-
-# Disclaimer !!!!!
-This is not a mature project yet.
-
-It works for my setup so far.
-
-It may not work correctly if your setup is too complicated, so please do some testing before pushing it to production!!!
+This is not a mature nor is it a well tested project. It works for some personal
+use cases. Feel free to fork or submit pull requests.

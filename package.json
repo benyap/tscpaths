@@ -1,30 +1,38 @@
 {
-  "name": "tscpaths",
-  "version": "0.0.9",
+  "name": "@benyap/tscpaths",
+  "version": "0.0.10-rc.9",
   "description": "Replace absolute paths to relative paths after typescript compilation",
-  "main": "cjs/index.js",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "cjs/main.js",
+  "module": "lib/main.js",
+  "types": "lib/main.d.ts",
+  "files": [
+    "lib/**",
+    "cjs/**"
+  ],
   "bin": {
-    "tscpaths": "cjs/index.js"
+    "tscpaths": "cjs/main.js"
+  },
+  "directories": {
+    "lib": "lib"
   },
   "scripts": {
-    "prebuild": "yarn clear && yarn format && yarn lint:fix && yarn test",
+    "prebuild": "yarn clear && yarn format",
     "build": "yarn build:esm && yarn build:cjs",
     "build:esm": "tsc -p ./tsconfig.esm.json",
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "clear": "rm -rf ./lib ./cjs ./coverage",
-    "format": "prettier --write \"./*.{js,jsx,ts,tsx}\" \"./src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "tslint -c ./tslint.json \"src/**/*\"",
-    "lint:fix": "tslint --fix -c ./tslint.json \"src/**/*\"",
-    "start": "node cjs/index.js",
+    "format": "prettier --write \"./src/**/*.ts\"",
+    "start:dev": "ts-node src/main.ts",
+    "start": "node cjs/main.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "release-rc": "standard-version --skip.changelog --prerelease rc",
+    "release": "standard-version --skip.changelog"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/joonhocho/tscpaths.git"
+    "url": "git+https://github.com/benyap/tscpaths.git"
   },
   "keywords": [
     "typescript",
@@ -35,25 +43,25 @@
     "compilation",
     "tsc"
   ],
-  "author": "Joon Ho Cho <joonho1101@gmail.com>",
+  "author": "Ben Yap <contact@benyap.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joonhocho/tscpaths/issues"
+    "url": "https://github.com/benyap/tscpaths/issues"
   },
-  "homepage": "https://github.com/joonhocho/tscpaths#readme",
+  "homepage": "https://github.com/benyap/tscpaths#readme",
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.14.0",
-    "jest": "^27.0.6",
-    "prettier": "^2.3.2",
-    "ts-jest": "^27.0.3",
-    "tslint": "^6.1.3",
-    "tslint-config-airbnb": "^5.11.2",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.3.5"
+    "@types/jest": "26.0.23",
+    "@types/node": "15.14.0",
+    "jest": "27.0.6",
+    "prettier": "2.3.2",
+    "standard-version": "9.3.0",
+    "ts-jest": "27.0.3",
+    "ts-node": "10.0.0",
+    "typescript": "4.3.5"
   },
   "dependencies": {
-    "commander": "^8.0.0",
-    "globby": "^11.0.4"
+    "ansi-colors": "4.1.1",
+    "commander": "8.0.0",
+    "globby": "11.0.4"
   }
 }
