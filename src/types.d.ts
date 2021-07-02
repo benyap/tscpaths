@@ -2,7 +2,7 @@ export interface ProgramArgs {
   project: string;
   src: string;
   out: string;
-  extensions: string;
+  ext: string;
   verbose: boolean;
 }
 

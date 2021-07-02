@@ -34,7 +34,7 @@ function main() {
     const aliases = computeAliases(configPaths.basePath, tsConfig);
     console.log('aliases ->', aliases);
 
-    const files = getFilesToProcess(programPaths.outPath, options.extensions);
+    const files = getFilesToProcess(programPaths.outPath, options.ext);
     console.log('files ->', files);
 
     const replacer = createReplacer(programPaths, configPaths, aliases);
