@@ -1,6 +1,6 @@
 {
   "name": "@benyap/tscpaths",
-  "version": "0.0.10-rc.4",
+  "version": "0.0.10-rc.5",
   "description": "Replace absolute paths to relative paths after typescript compilation",
   "main": "cjs/main.js",
   "module": "lib/main.js",
