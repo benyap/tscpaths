@@ -1,4 +1,4 @@
-import { blue, bold, dim, red } from 'ansi-colors';
+import { bold, dim, green, red } from 'ansi-colors';
 
 export type LoggerLevel = 'verbose' | 'info' | 'error';
 
@@ -6,23 +6,35 @@ export class Logger {
   constructor(public readonly level: LoggerLevel) {}
 
   verbose(...args: any[]) {
-    if (this.level === 'verbose') console.log(dim('[v]'), ...args);
+    if (this.level === 'verbose') {
+      console.log(...args);
+    }
   }
 
   info(...args: any[]) {
-    if (this.level in ['verbose', 'info']) console.log(blue('[i]'), ...args);
+    if (this.level in ['verbose', 'info']) {
+      console.log(...args);
+    }
   }
 
   error(...args: any[]) {
-    console.error(red.bold('[e]'), ...args);
+    console.error(...args.map((x) => red(x)));
   }
 
   fancyParams<T extends { [key: string]: any }>(title: string, params: T) {
     this.verbose(bold(title));
-    for (const key of Object.keys(params)) {
-      this.verbose(key, '->', params[key as keyof typeof params]);
+    const keys = Object.keys(params);
+    const isArray = Array.isArray(params);
+    if (keys.length === 0) this.verbose(dim('empty'));
+    else {
+      for (const key of keys) {
+        let value = params[key as keyof typeof params] as any;
+        if (typeof value === 'string') value = green(value);
+        if (isArray) this.verbose(value);
+        else this.verbose(key, '->', value);
+      }
     }
-    this.verbose(dim('---'));
+    this.verbose();
   }
 
   fancyError(title: string, message: string) {

@@ -21,11 +21,12 @@ function main() {
   const options = program.parse().opts<ProgramArgs>();
   const logger = new Logger(options.verbose ? 'verbose' : 'info');
 
-  logger.fancyParams('Program options', options);
+  logger.verbose();
+  logger.fancyParams('options', options);
 
   try {
     const programPaths = resolvePaths(options);
-    logger.fancyParams('Program paths', programPaths);
+    logger.fancyParams('programPaths', programPaths);
 
     const tsConfig = loadTSConfig(programPaths);
     const { baseUrl, outDir, paths } = tsConfig.compilerOptions ?? {};
