@@ -38,7 +38,6 @@ function main() {
     console.log('files ->', files);
 
     const replacer = createReplacer(programPaths, configPaths, aliases);
-    console.log('replacer ->', replacer);
 
     const { replacements, changes } = replacer(files);
     console.log('replacements ->', replacements);

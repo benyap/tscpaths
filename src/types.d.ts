@@ -38,12 +38,8 @@ export interface ReplaceRecord {
   sourceFile: string;
   outFile: string;
   modulePath: string;
-  paths: ReplacePathRecord[];
-}
-
-export interface ReplacePathRecord {
-  relativePath: string;
-  reference: string;
+  relativePath?: string;
+  reference?: string;
 }
 
 export interface ChangeRecord {
