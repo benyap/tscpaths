@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-import { red, green, bold } from 'ansi-colors';
+import { green, bold } from 'ansi-colors';
 
 import {
   createProgram,
@@ -14,44 +14,46 @@ import {
 import { MissingTSConfigError, ModuleNotFoundError, StepError } from './errors';
 
 import { ProgramArgs } from './types';
+import { Logger } from './logger';
 
 function main() {
+  const program = createProgram();
+  const options = program.parse().opts<ProgramArgs>();
+  const logger = new Logger(options.verbose ? 'verbose' : 'info');
+
+  logger.fancyParams('Program options', options);
+
   try {
-    const program = createProgram();
-
-    const options = program.parse().opts<ProgramArgs>();
-    console.log('options ->', options);
-
     const programPaths = resolvePaths(options);
-    console.log('paths ->', programPaths);
+    logger.fancyParams('Program paths', programPaths);
 
     const tsConfig = loadTSConfig(programPaths);
-    console.log('tsConfig ->', tsConfig);
+    const { baseUrl, outDir, paths } = tsConfig.compilerOptions ?? {};
+    logger.fancyParams('tsConfig.compilerOptions', { baseUrl, outDir, paths });
 
     const configPaths = resolveConfigPaths(programPaths, tsConfig);
-    console.log('configPaths ->', configPaths);
+    logger.fancyParams('configPaths', configPaths);
 
     const aliases = computeAliases(configPaths.basePath, tsConfig);
-    console.log('aliases ->', aliases);
+    logger.fancyParams('aliases', aliases);
 
     const files = getFilesToProcess(programPaths.outPath, options.ext);
-    console.log('files ->', files);
+    logger.fancyParams('files', files);
 
     const replacer = createReplacer(programPaths, configPaths, aliases);
 
     const { replacements, changes } = replacer(files);
-    console.log('replacements ->', replacements);
-    console.log('changes ->', changes);
+    logger.fancyParams('replacements', replacements);
+    logger.fancyParams('changes', changes);
   } catch (error) {
     if (error instanceof StepError) {
-      console.error();
-      console.error(red.bold(`Error during step '${error.step}'`));
+      let message = error.message;
       if (error instanceof ModuleNotFoundError) {
-        console.error(`Module ${green(error.module)} not found.`);
+        message = `Module ${green(error.module)} not found.`;
       } else if (error instanceof MissingTSConfigError) {
-        console.error(`${bold(error.path)} is not set.`);
-      } else console.error(error.message);
-      console.error();
+        message = `${bold(error.path)} is not set.`;
+      }
+      logger.fancyError(`Error during step '${error.step}'`, message);
     } else throw error;
   }
 }
