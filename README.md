@@ -1,4 +1,4 @@
-# tscpaths
+# @benyap/tscpaths - forked from [joonhocho's tscpaths](https://github.com/joonhocho/tscpaths)
 Replace absolute paths to relative paths after typescript compilation (tsc) during compile-time.
 
 [![npm version](https://badge.fury.io/js/tscpaths.svg)](https://badge.fury.io/js/tscpaths)

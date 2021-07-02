@@ -1,5 +1,5 @@
 {
-  "name": "tscpaths",
+  "name": "@benyap/tscpaths",
   "version": "0.0.9",
   "description": "Replace absolute paths to relative paths after typescript compilation",
   "main": "cjs/index.js",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/joonhocho/tscpaths.git"
+    "url": "https://github.com/benyap/tscpaths.git"
   },
   "keywords": [
     "typescript",
@@ -35,12 +35,12 @@
     "compilation",
     "tsc"
   ],
-  "author": "Joon Ho Cho <joonho1101@gmail.com>",
+  "author": "Ben Yap <contact@benyap.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joonhocho/tscpaths/issues"
+    "url": "https://github.com/benyap/tscpaths/issues"
   },
-  "homepage": "https://github.com/joonhocho/tscpaths#readme",
+  "homepage": "https://github.com/benyap/tscpaths#readme",
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^15.14.0",
