@@ -2,6 +2,9 @@ import { resolve } from 'path';
 import { MissingTSConfigError } from '../errors';
 import { ConfigPaths, ProgramPaths, TSConfig } from '../types';
 
+/**
+ * Resolve the paths provided in the tsconfig file.
+ */
 export function resolveConfigPaths(
   programPaths: ProgramPaths,
   tsConfig: TSConfig

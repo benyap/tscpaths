@@ -2,6 +2,9 @@ import { resolve } from 'path';
 import { loadModule } from '../utils';
 import { ProgramPaths, TSConfig } from '../types';
 
+/**
+ * Load the tsconfig file.
+ */
 export function loadTSConfig(paths: ProgramPaths): TSConfig {
   const { configFile } = paths;
 

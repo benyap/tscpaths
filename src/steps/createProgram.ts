@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import { version } from '../version.json';
 
 /**
- * Create the CLI parser program.
+ * Create the CLI program.
  */
 export function createProgram() {
   const program = new Command();

@@ -39,12 +39,10 @@ export function createReplacer(
             EXTS.some((x) => existsSync(`${moduleSrc}${x}`))
           ) {
             const rel = relative(dirname(srcFile), moduleSrc);
-            const relativePath = (
+            record.relativePath = (
               rel.startsWith('.') ? rel : `./${rel}`
             ).replace(/\\/g, '/');
-            record.relativePath = relativePath;
-            record.reference = relative(basePath, modulePath);
-            return relativePath;
+            return record.relativePath;
           }
         }
       }

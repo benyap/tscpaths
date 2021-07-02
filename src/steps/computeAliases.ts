@@ -1,6 +1,9 @@
 import { resolve } from 'path';
 import { Alias, TSConfig } from '../types';
 
+/**
+ * Compute the alias paths provided by the tsconfig.
+ */
 export function computeAliases(basePath: string, tsConfig: TSConfig): Alias[] {
   const regex = /\*$/;
   const { compilerOptions = {} } = tsConfig;
