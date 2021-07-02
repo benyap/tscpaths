@@ -23,7 +23,7 @@
     "noUnusedParameters": true,
     "outDir": "lib",
     "removeComments": true,
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
