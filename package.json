@@ -1,6 +1,6 @@
 {
   "name": "@benyap/tscpaths",
-  "version": "0.0.10-rc.2",
+  "version": "0.0.10-rc.3",
   "description": "Replace absolute paths to relative paths after typescript compilation",
   "main": "cjs/main.js",
   "module": "lib/main.js",
@@ -23,6 +23,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
+    "release-rc": "standard-version --skip.changelog --prerelease rc",
     "release": "standard-version --skip.changelog"
   },
   "repository": {
