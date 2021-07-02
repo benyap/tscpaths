@@ -1,28 +1,32 @@
 #! /usr/bin/env node
 
 // tslint:disable no-console
-import * as program from 'commander';
+import { Command } from 'commander';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { sync } from 'globby';
 import { dirname, relative, resolve } from 'path';
 import { loadConfig } from './util';
 
-program
-  .version('0.0.1')
-  .option('-p, --project <file>', 'path to tsconfig.json')
-  .option('-s, --src <path>', 'source root path')
-  .option('-o, --out <path>', 'output root path')
-  .option('-v, --verbose', 'output logs');
+const program = new Command();
 
-program.on('--help', () => {
-  console.log(`
-  $ tscpath -p tsconfig.json
-`);
-});
+program
+  .version(process.env.npm_package_version!)
+  .name('tscpaths')
+  .addHelpText(
+    'after',
+    `
+Example:
+  $ tscpath -p tsconfig.json -s ./src -o ./dist
+`
+  )
+  .requiredOption('-p, --project <file>', 'path to tsconfig.json')
+  .requiredOption('-s, --src <path>', 'source root path')
+  .requiredOption('-o, --out <path>', 'output root path')
+  .option('-v, --verbose', 'output logs');
 
 program.parse(process.argv);
 
-const { project, src, out, verbose } = program as {
+const { project = '', src = '', out = '', verbose } = program as {
   project?: string;
   src?: string;
   out?: string;
@@ -57,12 +61,15 @@ const { baseUrl, outDir, paths } = loadConfig(configFile);
 if (!baseUrl) {
   throw new Error('compilerOptions.baseUrl is not set');
 }
+
 if (!paths) {
   throw new Error('compilerOptions.paths is not set');
 }
+
 if (!outDir) {
   throw new Error('compilerOptions.outDir is not set');
 }
+
 verboseLog(`baseUrl: ${baseUrl}`);
 verboseLog(`outDir: ${outDir}`);
 verboseLog(`paths: ${JSON.stringify(paths, null, 2)}`);
@@ -162,7 +169,7 @@ const replaceAlias = (text: string, outFile: string): string =>
 const files = sync(`${outPath}/**/*.{js,jsx,ts,tsx}`, {
   dot: true,
   noDir: true,
-} as any).map((x) => resolve(x));
+} as any).map((x) => resolve(x.path));
 
 let changedFileCount = 0;
 
