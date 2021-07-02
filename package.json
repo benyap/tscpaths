@@ -50,18 +50,18 @@
   },
   "homepage": "https://github.com/benyap/tscpaths#readme",
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.14.0",
-    "jest": "^27.0.6",
-    "prettier": "^2.3.2",
-    "standard-version": "^9.3.0",
-    "ts-jest": "^27.0.3",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.5"
+    "@types/jest": "26.0.23",
+    "@types/node": "15.14.0",
+    "jest": "27.0.6",
+    "prettier": "2.3.2",
+    "standard-version": "9.3.0",
+    "ts-jest": "27.0.3",
+    "ts-node": "10.0.0",
+    "typescript": "4.3.5"
   },
   "dependencies": {
-    "ansi-colors": "^4.1.1",
-    "commander": "^8.0.0",
-    "globby": "^11.0.4"
+    "ansi-colors": "4.1.1",
+    "commander": "8.0.0",
+    "globby": "11.0.4"
   }
 }
