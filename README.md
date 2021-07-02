@@ -1,6 +1,8 @@
 # @benyap/tscpaths
 
-> Forked from [joonhocho's tscpaths](https://github.com/joonhocho/tscpaths)
+> This is a fork of joonhocho's
+> [tscpaths](https://github.com/joonhocho/tscpaths). Credit goes to
+> [joonhocho](https://github.com/joonhocho) for the original code.
 
 [![npm version](https://badge.fury.io/js/%40benyap%2Ftscpaths.svg)](https://badge.fury.io/js/%40benyap%2Ftscpaths)
 [![Dependency Status](https://david-dm.org/benyap/tscpaths.svg)](https://david-dm.org/benyap/tscpaths)
@@ -31,7 +33,8 @@ working JavaScript code.
    yarn add -D @benyap/tscpaths
    ```
 
-2. Add it as a part of your build script in `package.json`
+2. Add it as a part of your build script in `package.json` after the code has
+   been transpiled.
 
    ```json
    "scripts": {
