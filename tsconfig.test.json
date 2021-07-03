@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "lib",
-    "paths": {}
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./*"]
+    }
   }
 }
