@@ -1,3 +1,9 @@
+# This package is deprecated
+
+Please use [resolve-tspaths](https://github.com/benyap/resolve-tspaths) instead! It is a rewrite and tested version of this package.
+
+---
+
 # @benyap/tscpaths
 
 > This is a fork of joonhocho's
